@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Blood-Donor Matching Network</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        input, select { display: block; width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #d9534f; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; }
+        button:hover { background: #c9302c; }
+        .donor-card { background: #eef9ff; padding: 10px; margin: 10px 0; border-left: 4px solid #337ab7; }
+    </style>
+</head>
+<body>
+
+    <h1>Blood-Donor Matching Network 🩸</h1>
+
+    <!-- 1. Donor Registration Form -->
+    <div class="container">
+        <h2>Register as a Donor</h2>
+        <form id="donorForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <select id="blood_group" required>
+                <option value="">Select Blood Group</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+            <input type="date" id="last_donation_date" placeholder="Last Donation Date" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <button type="button" onclick="getLocationAndRegister()">Register with Current Location</button>
+        </form>
+        <p id="regMessage"></p>
+    </div>
+
+    <!-- 2. Emergency Search / Request Form -->
+    <div class="container">
+        <h2>Find Nearest Blood Donors</h2>
+        <form id="searchForm">
+            <select id="search_blood_group" required>
+                <option value="">Select Blood Group Needed</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+            <button type="button" onclick="searchNearestDonors()">Search Nearest Donors</button>
+        </form>
+        <div id="resultsContainer"></div>
+    </div>
+
+    <script>
+        // Get Browser Geolocation and Register Donor
+        function getLocationAndRegister() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const data = {
+                        name: document.getElementById('name').value,
+                        blood_group: document.getElementById('blood_group').value,
+                        last_donation_date: document.getElementById('last_donation_date').value,
+                        phone: document.getElementById('phone').value,
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    };
+
+                    fetch('http://localhost:5000/api/register-donor', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById('regMessage').innerText = data.message || data.error;
+                    })
+                    .catch(err => console.error(err));
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Search Nearest Donors
+        function searchNearestDonors() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const data = {
+                        blood_group_needed: document.getElementById('search_blood_group').value,
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    };
+
+                    fetch('http://localhost:5000/api/request-blood', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        const container = document.getElementById('resultsContainer');
+                        container.innerHTML = '<h3>Nearest Donors Found:</h3>';
+                        
+                        if(data.nearestDonors && data.nearestDonors.length > 0) {
+                            data.nearestDonors.forEach(donor => {
+                                container.innerHTML += `
+                                    <div class="donor-card">
+                                        <strong>Name:</strong> ${donor.name} <br>
+                                        <strong>Blood Group:</strong> ${donor.blood_group} <br>
+                                        <strong>Distance:</strong> ${donor.distance.toFixed(2)} KM away <br>
+                                        <strong>Phone:</strong> ${donor.phone} (Masked for privacy)
+                                    </div>
+                                `;
+                            });
+                        } else {
+                            container.innerHTML += '<p>No eligible donors found nearby.</p>';
+                        }
+                    });
+                });
+            }
+        }
+    </script>
+</body>
+</html>
+<!-- 3. Blood Bank Live Stock Dashboard -->
+<div class="container">
+    <h2>Blood Bank Live Stock Dashboard</h2>
+    
+    <!-- Update Stock Form -->
+    <form id="stockForm">
+        <input type="text" id="bank_name" placeholder="Blood Bank Name" required>
+        <select id="stock_blood_group" required>
+            <option value="">Select Blood Group</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+        </select>
+        <input type="number" id="units_available" placeholder="Units Available (e.g., 5)" required>
+        <input type="text" id="location_address" placeholder="Location/Address" required>
+        <button type="button" onclick="updateBloodStock()">Update Stock</button>
+    </form>
+    <p id="stockMessage"></p>
+
+    <button type="button" onclick="loadBloodStock()" style="background: #337ab7; margin-top: 15px;">Refresh Stock List</button>
+    <div id="stockListContainer" style="margin-top: 15px;"></div>
+</div>
+
+<script>
+    // Update Blood Bank Stock function
+    function updateBloodStock() {
+        const data = {
+            bank_name: document.getElementById('bank_name').value,
+            blood_group: document.getElementById('stock_blood_group').value,
+            units_available: document.getElementById('units_available').value,
+            location_address: document.getElementById('location_address').value
+        };
+
+        fetch('http://localhost:5000/api/update-stock', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('stockMessage').innerText = data.message || data.error;
+            loadBloodStock();
+        });
+    }
+
+    // Load Blood Bank Stock function
+    function loadBloodStock() {
+        fetch('http://localhost:5000/api/blood-banks')
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('stockListContainer');
+            container.innerHTML = '<h4>Available Blood Bank Stock:</h4>';
+            
+            if(data.bloodBanks && data.bloodBanks.length > 0) {
+                data.bloodBanks.notes = '';
+                data.bloodBanks.forEach(bank => {
+                    container.innerHTML += `
+                        <div class="donor-card">
+                            <strong>Bank:</strong> ${bank.bank_name} <br>
+                            <strong>Blood Group:</strong> ${bank.blood_group} | <strong>Units:</strong> ${bank.units_available} <br>
+                            <strong>Address:</strong> ${bank.location_address}
+                        </div>
+                    `;
+                });
+            } else {
+                container.innerHTML += '<p>No stock data available.</p>';
+            }
+        });
+    }
+
+    // Page load hote hi stock load kar lo
+    window.onload = function() {
+        loadBloodStock();
+    };
+</script>
