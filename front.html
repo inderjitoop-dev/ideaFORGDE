@@ -1,1 +1,251 @@
-html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donor Finder</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+        }
+
+        header {
+            background: #c90024;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav {
+            background: #99001b;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ccc;
+        }
+
+        h2 {
+            color: #c90024;
+            margin-bottom: 20px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #c90024;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #99001b;
+        }
+
+        .donor-card {
+            background: #fff1f3;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 5px solid #c90024;
+            border-radius: 5px;
+        }
+
+        footer {
+            background: #99001b;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🩸 Blood Donor Finder</h1>
+    <p>Donate Blood, Save Lives!</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#register">Register</a>
+    <a href="#search">Find Donor</a>
+</nav>
+
+<div class="container">
+
+    <section class="section" id="home">
+        <h2>Welcome to Blood Donor Finder</h2>
+        <p>
+            Our mission is to connect blood donors with people
+            who need blood during emergencies and donation camps.
+            Register today and help save lives!
+        </p>
+    </section>
+
+    <section class="section" id="register">
+        <h2>Register as a Blood Donor</h2>
+
+        <form id="donorForm">
+            <input type="text" id="name"
+                placeholder="Enter Your Name" required>
+
+            <input type="tel" id="phone"
+                placeholder="Enter Phone Number"
+                pattern="[0-9]{10}" required>
+
+            <select id="blood" required>
+                <option value="">Select Blood Group</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>O+</option>
+                <option>O-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+            </select>
+
+            <input type="text" id="city"
+                placeholder="Enter Your City" required>
+
+            <button type="submit">Register Donor</button>
+        </form>
+    </section>
+
+    <section class="section" id="search">
+        <h2>Find a Blood Donor</h2>
+
+        <select id="searchBlood">
+            <option value="">Select Blood Group</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>O+</option>
+            <option>O-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+        </select>
+
+        <input type="text" id="searchCity"
+            placeholder="Enter City">
+
+        <button onclick="searchDonors()">Search Donor</button>
+
+        <div id="results"></div>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 Blood Donor Finder | Save Life, Donate Blood ❤️</p>
+</footer>
+
+<script>
+
+    let donors = [];
+
+    document.getElementById("donorForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        let donor = {
+            name: document.getElementById("name").value,
+            phone: document.getElementById("phone").value,
+            blood: document.getElementById("blood").value,
+            city: document.getElementById("city").value
+        };
+
+        donors.push(donor);
+
+        alert("Donor Registered Successfully!");
+
+        this.reset();
+
+    });
+
+    function searchDonors() {
+
+        let blood = document.getElementById("searchBlood").value;
+        let city = document.getElementById("searchCity")
+                    .value.toLowerCase();
+
+        let results = document.getElementById("results");
+
+        results.innerHTML = "";
+
+        let filtered = donors.filter(function(donor) {
+
+            return (blood === "" || donor.blood === blood) &&
+                   (city === "" ||
+                   donor.city.toLowerCase().includes(city));
+
+        });
+
+        if (filtered.length === 0) {
+            results.innerHTML =
+                "<p>No donors found!</p>";
+            return;
+        }
+
+        filtered.forEach(function(donor) {
+
+            results.innerHTML += `
+                <div class="donor-card">
+                    <h3>${donor.name}</h3>
+                    <p><b>Blood Group:</b> ${donor.blood}</p>
+                    <p><b>City:</b> ${donor.city}</p>
+                    <p><b>Phone:</b> ${donor.phone}</p>
+                </div>
+            `;
+
+        });
+
+    }
+
+</script>
+
+</body>
+</html>
