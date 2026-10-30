@@ -1,0 +1,2551 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blood Donor | A Legacy of Giving</title>
+
+    <meta name="description"
+          content="Blood Donor connects blood donation awareness, donor registration, blood group information, and blood bank stock management.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        /* ===================================
+           BLOOD DONOR
+           OLD MONEY DESIGN SYSTEM
+        =================================== */
+
+        :root {
+            --forest: #173c2d;
+            --forest-dark: #0b2119;
+            --forest-light: #315640;
+
+            --cream: #f5f0e5;
+            --ivory: #fffdf7;
+            --gold: #c2a66b;
+            --gold-light: #e5d5ad;
+
+            --burgundy: #873c43;
+            --burgundy-dark: #692d34;
+
+            --text: #26392e;
+            --muted: #70776d;
+            --border: #ddd5c3;
+
+            --shadow: 0 12px 35px rgba(23, 60, 45, 0.09);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        .container {
+            width: 88%;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 16px;
+            color: var(--burgundy);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.3;
+        }
+
+        h1,
+        h2 {
+            font-family: "Playfair Display", serif;
+        }
+
+        h2 {
+            color: var(--forest);
+            font-size: clamp(32px, 4vw, 47px);
+            margin-bottom: 20px;
+        }
+
+        .section-heading {
+            max-width: 740px;
+            margin: 0 auto 45px;
+            text-align: center;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .section-heading h2 {
+            margin-bottom: 18px;
+        }
+
+        /* ===================================
+           NAVIGATION
+        =================================== */
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+
+            padding: 20px 6%;
+
+            background: var(--forest-dark);
+            border-bottom: 1px solid rgba(194, 166, 107, 0.4);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: var(--ivory);
+
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+        .brand-symbol {
+            color: var(--gold);
+            font-size: 29px;
+        }
+
+        .brand small {
+            display: block;
+            color: var(--gold-light);
+            font-family: "DM Sans", sans-serif;
+            font-size: 8px;
+            font-weight: 500;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 23px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #e8e4d7;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links .nav-cta {
+            border: 1px solid var(--gold);
+            padding: 9px 15px;
+            color: var(--gold-light);
+        }
+
+        /* ===================================
+           HERO SECTION
+        =================================== */
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: center;
+            gap: 65px;
+
+            padding: 90px 7%;
+
+            background:
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(63, 100, 69, 0.5),
+                    transparent 40%
+                ),
+                linear-gradient(
+                    125deg,
+                    var(--forest-dark),
+                    var(--forest) 65%,
+                    #294c36
+                );
+
+            color: var(--ivory);
+        }
+
+        .hero .eyebrow {
+            color: var(--gold-light);
+        }
+
+        .hero h1 {
+            font-size: clamp(43px, 5.3vw, 73px);
+            line-height: 1.12;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .hero-description {
+            max-width: 580px;
+            margin-bottom: 30px;
+
+            color: #e0e5db;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 13px 21px;
+
+            border: 1px solid transparent;
+            border-radius: 3px;
+
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+
+            transition: 0.3s;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--forest-dark);
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            color: var(--ivory);
+            border-color: rgba(229, 213, 173, 0.6);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-note {
+            margin-top: 27px;
+            color: #d9dfd4;
+            font-size: 12px;
+        }
+
+        .hero-note span {
+            color: #df9292;
+            font-size: 18px;
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-visual::before {
+            content: "";
+            position: absolute;
+
+            top: -12px;
+            right: -12px;
+            bottom: 12px;
+            left: 12px;
+
+            border: 1px solid var(--gold);
+        }
+
+        .hero-visual img {
+            position: relative;
+            z-index: 1;
+
+            width: 100%;
+            height: 440px;
+
+            object-fit: cover;
+            border: 5px solid rgba(255, 253, 247, 0.08);
+        }
+
+        /* ===================================
+           HIGHLIGHTS
+        =================================== */
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+
+            padding: 35px 7%;
+
+            background: var(--ivory);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .highlight {
+            padding: 10px 22px;
+            border-right: 1px solid var(--border);
+        }
+
+        .highlight:last-child {
+            border-right: none;
+        }
+
+        .highlight-icon {
+            color: var(--burgundy);
+            font-size: 27px;
+        }
+
+        .highlight h3 {
+            margin: 9px 0;
+            color: var(--forest);
+            font-size: 16px;
+        }
+
+        .highlight p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* ===================================
+           ABOUT
+        =================================== */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 65px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 440px;
+            object-fit: cover;
+            border: 5px solid var(--ivory);
+            box-shadow: var(--shadow);
+        }
+
+        .about-text p {
+            margin-bottom: 17px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .text-link {
+            display: inline-block;
+            margin-top: 10px;
+
+            color: var(--burgundy);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* ===================================
+           BLOOD GROUPS
+        =================================== */
+
+        .blood-section {
+            background: #e9e7d9;
+        }
+
+        .blood-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .blood-card {
+            padding: 25px 22px;
+
+            background: var(--ivory);
+            border: 1px solid var(--border);
+
+            transition: 0.3s;
+        }
+
+        .blood-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--gold);
+        }
+
+        .blood-type {
+            display: grid;
+            place-items: center;
+
+            width: 62px;
+            height: 62px;
+            margin-bottom: 18px;
+
+            background: #f0e3dc;
+            color: var(--burgundy);
+
+            border: 1px solid #d9b9a8;
+            border-radius: 50%;
+
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .blood-card h3 {
+            margin-bottom: 10px;
+            color: var(--forest);
+            font-size: 15px;
+        }
+
+        .blood-card p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .notice {
+            margin-top: 28px;
+            padding: 18px 22px;
+
+            background: #fff9e9;
+            color: #6f5932;
+
+            border-left: 4px solid var(--gold);
+            font-size: 12px;
+        }
+
+        /* ===================================
+           BENEFITS
+        =================================== */
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .benefit-card {
+            padding: 27px 22px;
+
+            background: var(--ivory);
+            border: 1px solid var(--border);
+
+            transition: 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .benefit-icon {
+            display: grid;
+            place-items: center;
+
+            width: 54px;
+            height: 54px;
+            margin-bottom: 18px;
+
+            background: var(--forest);
+            color: var(--gold);
+
+            font-size: 25px;
+        }
+
+        .benefit-card h3 {
+            margin-bottom: 12px;
+            color: var(--forest);
+            font-size: 15px;
+        }
+
+        .benefit-card p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .message-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 35px;
+
+            margin-top: 40px;
+            padding: 35px;
+
+            background: var(--forest);
+            color: var(--ivory);
+        }
+
+        .message-box .eyebrow {
+            color: var(--gold);
+        }
+
+        .message-box h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 27px;
+        }
+
+        .message-box p {
+            color: #d8e1d7;
+            font-size: 13px;
+        }
+
+        /* ===================================
+           ELIGIBILITY
+        =================================== */
+
+        .eligibility-section {
+            background: #e9e7d9;
+        }
+
+        .eligibility-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .eligibility-card {
+            padding: 30px;
+            background: var(--ivory);
+            border: 1px solid var(--border);
+        }
+
+        .eligibility-card h3 {
+            margin-bottom: 20px;
+            color: var(--forest);
+            font-size: 17px;
+        }
+
+        .eligibility-card ul {
+            list-style: none;
+        }
+
+        .eligibility-card li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 14px;
+
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .eligible li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--forest-light);
+            font-weight: 700;
+        }
+
+        .careful li::before {
+            content: "!";
+            position: absolute;
+            left: 0;
+            color: var(--burgundy);
+            font-weight: 700;
+        }
+
+        .eligibility-note {
+            max-width: 850px;
+            margin: 25px auto 0;
+
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* ===================================
+           DONOR MATCHING / FORMS
+        =================================== */
+
+        .matching-section {
+            background: var(--ivory);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .form-group {
+            min-width: 0;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+
+            color: var(--forest);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        input,
+        select {
+            display: block;
+            width: 100%;
+            min-height: 46px;
+
+            padding: 11px 12px;
+
+            background: #fffdf8;
+            color: var(--text);
+
+            border: 1px solid var(--border);
+            border-radius: 3px;
+
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--forest-light);
+            box-shadow: 0 0 0 2px rgba(49, 86, 64, 0.10);
+        }
+
+        input[type="checkbox"] {
+            display: inline-block;
+            width: 17px;
+            min-height: 17px;
+            margin-top: 3px;
+        }
+
+        .consent-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .consent-row label {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .form-card {
+            padding: 30px;
+            background: white;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .form-card h3 {
+            margin-bottom: 10px;
+            color: var(--forest);
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+        }
+
+        .form-card > p {
+            margin-bottom: 25px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .form-card .btn {
+            margin-top: 20px;
+        }
+
+        .form-card button {
+            border: none;
+        }
+
+        .form-note {
+            margin-top: 15px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        /* ===================================
+           RESULTS
+        =================================== */
+
+        .results {
+            margin-top: 25px;
+        }
+
+        .results h3 {
+            margin-bottom: 15px;
+            color: var(--forest);
+        }
+
+        .result-message {
+            margin-top: 15px;
+            padding: 12px 14px;
+
+            background: #e8eee5;
+            color: var(--forest);
+
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .result-message.error {
+            background: #f8e7e5;
+            color: #792e35;
+        }
+
+        .donor-card {
+            margin-bottom: 12px;
+            padding: 18px;
+
+            background: #f7f5ed;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--gold);
+
+            overflow-wrap: anywhere;
+        }
+
+        .donor-card p {
+            margin: 5px 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .donor-card strong {
+            color: var(--forest);
+        }
+
+        /* ===================================
+           BLOOD BANK DASHBOARD
+        =================================== */
+
+        .stock-section {
+            background: #e9e7d9;
+        }
+
+        .stock-card {
+            padding: 30px;
+            background: var(--ivory);
+            border: 1px solid var(--border);
+        }
+
+        .stock-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .stock-toolbar h3 {
+            color: var(--forest);
+            font-family: "Playfair Display", serif;
+            font-size: 23px;
+        }
+
+        .btn-forest {
+            background: var(--forest);
+            color: white;
+        }
+
+        .btn-forest:hover {
+            background: var(--forest-light);
+        }
+
+        /* ===================================
+           CALL TO ACTION
+        =================================== */
+
+        .cta {
+            padding: 85px 7%;
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(63, 100, 69, 0.45),
+                    transparent 60%
+                ),
+                var(--forest-dark);
+
+            color: var(--ivory);
+        }
+
+        .cta .eyebrow {
+            color: var(--gold);
+        }
+
+        .cta h2 {
+            color: var(--ivory);
+        }
+
+        .cta p {
+            max-width: 650px;
+            margin: 0 auto 25px;
+
+            color: #d8e1d7;
+            font-size: 14px;
+        }
+
+        /* ===================================
+           FOOTER
+        =================================== */
+
+        footer {
+            padding: 45px 7% 25px;
+            text-align: center;
+
+            background: #07150f;
+            color: var(--ivory);
+        }
+
+        footer .brand {
+            justify-content: center;
+        }
+
+        footer p {
+            max-width: 600px;
+            margin: 15px auto;
+
+            color: #c5d0c4;
+            font-size: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 23px;
+
+            margin: 25px 0;
+        }
+
+        .footer-links a {
+            color: var(--gold-light);
+            font-size: 12px;
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid #344638;
+        }
+
+        footer .disclaimer {
+            color: #a9b6a7;
+            font-size: 11px;
+        }
+
+        /* ===================================
+           RESPONSIVE DESIGN
+        =================================== */
+
+        @media (max-width: 1050px) {
+
+            .navbar {
+                padding: 18px 4%;
+            }
+
+            .nav-links {
+                gap: 13px;
+            }
+
+            .hero {
+                gap: 35px;
+                padding: 70px 5%;
+            }
+
+            .blood-grid,
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 760px) {
+
+            .navbar {
+                position: relative;
+                flex-direction: column;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .hero,
+            .about-grid,
+            .message-box {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 55px 6%;
+            }
+
+            .hero-visual img {
+                height: 330px;
+            }
+
+            .highlights {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .highlight {
+                padding: 18px 5px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .highlight:last-child {
+                border-bottom: none;
+            }
+
+            .about-grid {
+                gap: 30px;
+            }
+
+            .about-image img {
+                height: 330px;
+            }
+
+            .eligibility-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 65px 0;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .container {
+                width: 90%;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .blood-grid,
+            .benefits-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: auto;
+            }
+
+            .form-card,
+            .stock-card {
+                padding: 20px;
+            }
+
+            .message-box {
+                padding: 25px;
+            }
+
+            .cta {
+                padding: 65px 6%;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ===================================
+         NAVIGATION
+    =================================== -->
+
+    <header class="navbar">
+
+        <a href="#home" class="brand">
+            <span class="brand-symbol">♥</span>
+
+            <span>
+                Blood Donor
+                <small>A Legacy of Giving</small>
+            </span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#blood-groups">Blood Groups</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#register">Register</a>
+            <a href="#search">Find Donors</a>
+            <a href="#stock" class="nav-cta">Blood Bank</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ===================================
+         HERO
+    =================================== -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <span class="eyebrow">
+                A SMALL ACT. A LASTING LEGACY.
+            </span>
+
+            <h1>
+                Give Blood.<br>
+                <span>Give Hope.</span><br>
+                Save Lives.
+            </h1>
+
+            <p class="hero-description">
+                Blood donation is one of the most meaningful ways to help
+                another person. Blood Donor brings awareness, potential
+                donors, and blood bank information together to support
+                communities when patients need blood.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#register" class="btn btn-gold">
+                    Become a Donor
+                </a>
+
+                <a href="#search" class="btn btn-outline">
+                    Find Blood Donors
+                </a>
+
+            </div>
+
+            <p class="hero-note">
+                <span>♥</span>
+                Every donor has the power to make a difference.
+            </p>
+
+        </div>
+
+        <div class="hero-visual">
+
+            <img
+                src="https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=1000&q=85"
+                alt="Blood donation supplies">
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================
+         HIGHLIGHTS
+    =================================== -->
+
+    <section class="highlights">
+
+        <div class="highlight">
+            <div class="highlight-icon">♥</div>
+
+            <h3>A Gift of Life</h3>
+
+            <p>
+                Donated blood supports patients who need transfusions.
+            </p>
+        </div>
+
+        <div class="highlight">
+            <div class="highlight-icon">✦</div>
+
+            <h3>Responsible Donation</h3>
+
+            <p>
+                Qualified healthcare staff assess donation eligibility.
+            </p>
+        </div>
+
+        <div class="highlight">
+            <div class="highlight-icon">♧</div>
+
+            <h3>Community Support</h3>
+
+            <p>
+                Help build a culture of voluntary blood donation.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- ===================================
+         ABOUT
+    =================================== -->
+
+    <section class="section" id="about">
+
+        <div class="container about-grid">
+
+            <div class="about-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=85"
+                    alt="Healthcare professionals in a medical environment">
+
+            </div>
+
+            <div class="about-text">
+
+                <span class="eyebrow">OUR MISSION</span>
+
+                <h2>
+                    A Simple Act.<br>
+                    An Extraordinary Impact.
+                </h2>
+
+                <p>
+                    Blood donation is the voluntary process of giving blood
+                    so that it can be used to treat patients who need
+                    transfusions.
+                </p>
+
+                <p>
+                    Donated blood and its components can help patients
+                    experiencing severe bleeding, people undergoing surgery,
+                    individuals receiving cancer treatment, and patients
+                    with certain blood disorders.
+                </p>
+
+                <p>
+                    Blood cannot be manufactured for routine clinical use.
+                    Hospitals therefore rely on donations to maintain a
+                    dependable supply.
+                </p>
+
+                <p>
+                    Blood Donor aims to make donation information easier
+                    to understand and help people find appropriate
+                    blood donation resources.
+                </p>
+
+                <a href="#benefits" class="text-link">
+                    Learn about the benefits →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================
+         BLOOD GROUPS
+    =================================== -->
+
+    <section class="section blood-section" id="blood-groups">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">UNDERSTAND YOUR BLOOD</span>
+
+                <h2>Know Your Blood Group</h2>
+
+                <p>
+                    The ABO and Rh systems define the eight common blood
+                    groups. Compatibility matters when red blood cells
+                    are transfused.
+                </p>
+
+            </div>
+
+            <div class="blood-grid">
+
+                <article class="blood-card">
+                    <div class="blood-type">A+</div>
+                    <h3>A Positive</h3>
+                    <p>
+                        A+ red blood cells can generally be given to
+                        A+ and AB+ recipients.
+                    </p>
+                </article>
+
+                <article class="blood-card">
+                    <div class="blood-type">A−</div>
+                    <h3>A Negative</h3>
+                    <p>
+                        A− red blood cells can generally be given to
+                        A−, A+, AB− and AB+ recipients.
+                    </p>
+                </article>
+
+                <article class="blood-card">
+                    <div class="blood-type">B+</div>
+                    <h3>B Positive</h3>
+                    <p>
+                        B+ red blood cells can generally be given to
+                        B+ and AB+ recipients.
+                    </p>
+                </article>
+
+                <article class="blood-card">
+                    <div class="blood-type">B−</div>
+                    <h3>B Negative</h3>
+                    <p>
+                        B− red blood cells can generally be given to
+                        B−, B+, AB− and AB+ recipients.
+                    </p>
+                </article>
+
+                <article class="blood-card">
+                    <div class="blood-type">AB+</div>
+                    <h3>AB Positive</h3>
+                    <p>
+                        AB+ recipients can generally receive red blood
+                        cells from all eight ABO/Rh groups.
+                    </p>
+                </article>
+
+                <article class="blood-card">
+                    <div class="blood-type">AB−</div>
+                    <h3>AB Negative</h3>
+                    <p>
+                        AB− red blood cells can generally be given to
+                        AB− and AB+ recipients.
+                    </p>
+                </article>
+
+                <article class="blood-card">
+                    <div class="blood-type">O+</div>
+                    <h3>O Positive</h3>
+                    <p>
+                        O+ red blood cells can generally be given to
+                        Rh-positive recipients.
+                    </p>
+                </article>
+
+                <article class="blood-card">
+                    <div class="blood-type">O−</div>
+                    <h3>O Negative</h3>
+                    <p>
+                        O− red blood cells are commonly used in some
+                        emergencies when the patient's blood group
+                        is not yet known.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="notice">
+                <strong>Medical note:</strong>
+                These are general red blood cell compatibility rules.
+                Actual transfusions require professional testing and
+                compatibility checks. Plasma and platelet compatibility
+                follow different rules.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================
+         BENEFITS
+    =================================== -->
+
+    <section class="section" id="benefits">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">THE VALUE OF GIVING</span>
+
+                <h2>Benefits of Blood Donation</h2>
+
+                <p>
+                    Voluntary blood donation helps patients, supports
+                    healthcare services, and encourages compassion.
+                </p>
+
+            </div>
+
+            <div class="benefits-grid">
+
+                <article class="benefit-card">
+                    <div class="benefit-icon">♥</div>
+
+                    <h3>Helps Save Lives</h3>
+
+                    <p>
+                        Donated blood can help patients experiencing
+                        serious injuries, severe bleeding, or surgical
+                        complications.
+                    </p>
+                </article>
+
+                <article class="benefit-card">
+                    <div class="benefit-icon">✚</div>
+
+                    <h3>Supports Treatment</h3>
+
+                    <p>
+                        Blood components may be needed by people
+                        receiving treatment for cancer and certain
+                        blood disorders.
+                    </p>
+                </article>
+
+                <article class="benefit-card">
+                    <div class="benefit-icon">♧</div>
+
+                    <h3>Builds Community</h3>
+
+                    <p>
+                        Donation campaigns encourage kindness,
+                        social responsibility, and community
+                        participation.
+                    </p>
+                </article>
+
+                <article class="benefit-card">
+                    <div class="benefit-icon">✦</div>
+
+                    <h3>Raises Awareness</h3>
+
+                    <p>
+                        Donor screening helps assess suitability
+                        for donation. It is not a substitute for
+                        a complete medical checkup.
+                    </p>
+                </article>
+
+            </div>
+
+            <div class="message-box">
+
+                <div>
+                    <span class="eyebrow">A CONTINUING NEED</span>
+
+                    <h3>
+                        The Gift of Blood Must Continue.
+                    </h3>
+                </div>
+
+                <p>
+                    Blood components have limited storage lives.
+                    Hospitals need a continuing supply of donations.
+                    Eligible people can ask an authorised blood
+                    donation service when they may safely donate again.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================
+         ELIGIBILITY
+    =================================== -->
+
+    <section class="section eligibility-section" id="eligibility">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">DONATE RESPONSIBLY</span>
+
+                <h2>Before You Donate</h2>
+
+                <p>
+                    Donor and recipient safety are essential.
+                    Eligibility must be assessed by qualified staff.
+                </p>
+
+            </div>
+
+            <div class="eligibility-grid">
+
+                <div class="eligibility-card eligible">
+
+                    <h3>✓ Prepare for Donation</h3>
+
+                    <ul>
+                        <li>Meet the age, weight and health requirements.</li>
+                        <li>Eat a balanced meal and drink enough water.</li>
+                        <li>Bring any required identification documents.</li>
+                        <li>Tell staff about medicines and relevant health history.</li>
+                        <li>Answer the screening questions honestly.</li>
+                    </ul>
+
+                </div>
+
+                <div class="eligibility-card careful">
+
+                    <h3>! Consult Donation Staff</h3>
+
+                    <ul>
+                        <li>If you feel unwell or have a fever.</li>
+                        <li>If you have low haemoglobin or anaemia.</li>
+                        <li>If you are pregnant or recently gave birth.</li>
+                        <li>If you recently had surgery or certain procedures.</li>
+                        <li>If a medication or medical condition may affect eligibility.</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <p class="eligibility-note">
+                Eligibility requirements vary. Ask an authorised
+                blood bank for an individual assessment.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================
+         DONOR REGISTRATION
+    =================================== -->
+
+    <section class="section matching-section" id="register">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">JOIN THE COMMUNITY</span>
+
+                <h2>Register as a Blood Donor</h2>
+
+                <p>
+                    Register your details to help an authorised
+                    blood donation service coordinate potential
+                    donor matches.
+                </p>
+
+            </div>
+
+            <div class="form-card">
+
+                <h3>Donor Registration</h3>
+
+                <p>
+                    Complete the form below. Location sharing
+                    requires your permission.
+                </p>
+
+                <form id="donorForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="name">Full Name</label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                maxlength="100"
+                                autocomplete="name"
+                                placeholder="Enter your full name"
+                                required>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="blood_group">Blood Group</label>
+
+                            <select id="blood_group" required>
+
+                                <option value="">Select blood group</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A−</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B−</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O−</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB−</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="last_donation_date">
+                                Last Donation Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="last_donation_date"
+                                required>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="phone">Phone Number</label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                maxlength="20"
+                                autocomplete="tel"
+                                placeholder="Enter your phone number"
+                                required>
+
+                        </div>
+
+                        <div class="form-group full-width">
+
+                            <div class="consent-row">
+
+                                <input
+                                    type="checkbox"
+                                    id="donorConsent"
+                                    required>
+
+                                <label for="donorConsent">
+                                    I consent to submitting my information
+                                    to this application's backend for donor
+                                    coordination. I understand that my details
+                                    must be protected and should only be shared
+                                    with authorised people when necessary.
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-gold">
+
+                        Register with My Location
+
+                    </button>
+
+                </form>
+
+                <div
+                    id="regMessage"
+                    class="result-message"
+                    role="status"
+                    aria-live="polite"
+                    hidden>
+                </div>
+
+                <p class="form-note">
+                    Your browser may ask for location permission.
+                    The backend must securely store and protect donor data.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================
+         SEARCH NEARBY DONORS
+    =================================== -->
+
+    <section class="section" id="search">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">EMERGENCY DONOR SEARCH</span>
+
+                <h2>Find Potential Blood Donors</h2>
+
+                <p>
+                    Choose a blood group and allow location access
+                    to request potential nearby matches from your
+                    configured backend.
+                </p>
+
+            </div>
+
+            <div class="form-card">
+
+                <h3>Search Donors</h3>
+
+                <p>
+                    Search results are potential matches, not
+                    confirmation of donor eligibility or blood availability.
+                </p>
+
+                <form id="searchForm">
+
+                    <div class="form-group">
+
+                        <label for="search_blood_group">
+                            Blood Group Needed
+                        </label>
+
+                        <select id="search_blood_group" required>
+
+                            <option value="">Select blood group needed</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A−</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B−</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O−</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB−</option>
+
+                        </select>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-gold">
+                        Search Nearby Donors
+                    </button>
+
+                </form>
+
+                <div
+                    id="resultsContainer"
+                    class="results"
+                    aria-live="polite">
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================
+         BLOOD BANK STOCK DASHBOARD
+    =================================== -->
+
+    <section class="section stock-section" id="stock">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">BLOOD BANK MANAGEMENT</span>
+
+                <h2>Blood Bank Stock Dashboard</h2>
+
+                <p>
+                    Authorised staff can use the connected backend
+                    to maintain blood stock information.
+                </p>
+
+            </div>
+
+            <div class="stock-card">
+
+                <h3>Update Blood Stock</h3>
+
+                <p class="form-note">
+                    Stock updates should only be permitted for
+                    authenticated, authorised blood bank staff.
+                </p>
+
+                <form id="stockForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="bank_name">
+                                Blood Bank Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="bank_name"
+                                maxlength="150"
+                                placeholder="Enter blood bank name"
+                                required>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="stock_blood_group">
+                                Blood Group
+                            </label>
+
+                            <select id="stock_blood_group" required>
+
+                                <option value="">Select blood group</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A−</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B−</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O−</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB−</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="units_available">
+                                Units Available
+                            </label>
+
+                            <input
+                                type="number"
+                                id="units_available"
+                                min="0"
+                                max="100000"
+                                step="1"
+                                placeholder="Enter number of units"
+                                required>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="location_address">
+                                Blood Bank Address
+                            </label>
+
+                            <input
+                                type="text"
+                                id="location_address"
+                                maxlength="250"
+                                placeholder="Enter location or address"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-gold">
+                        Update Blood Stock
+                    </button>
+
+                </form>
+
+                <div
+                    id="stockMessage"
+                    class="result-message"
+                    role="status"
+                    aria-live="polite"
+                    hidden>
+                </div>
+
+                <div class="stock-toolbar">
+
+                    <h3>Available Blood Bank Stock</h3>
+
+                    <button
+                        type="button"
+                        id="refreshStock"
+                        class="btn btn-forest">
+
+                        Refresh Stock List
+
+                    </button>
+
+                </div>
+
+                <div
+                    id="stockListContainer"
+                    class="results"
+                    aria-live="polite">
+
+                    <p class="form-note">
+                        Connect the backend to load current stock information.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================
+         CALL TO ACTION
+    =================================== -->
+
+    <section class="cta" id="contact">
+
+        <span class="eyebrow">A LEGACY OF COMPASSION</span>
+
+        <h2>
+            Give the Gift<br>
+            of Another Tomorrow.
+        </h2>
+
+        <p>
+            Learn about voluntary blood donation and locate
+            authorised blood banks and donation camps in India.
+        </p>
+
+        <a
+            href="https://www.eraktkosh.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-gold">
+
+            Explore e-RaktKosh ↗
+
+        </a>
+
+    </section>
+
+
+    <!-- ===================================
+         FOOTER
+    =================================== -->
+
+    <footer>
+
+        <a href="#home" class="brand">
+            <span class="brand-symbol">♥</span>
+
+            <span>
+                Blood Donor
+                <small>A Legacy of Giving</small>
+            </span>
+        </a>
+
+        <p>
+            Every donor matters. Every donation has a purpose.
+            Together, we can support a stronger community.
+        </p>
+
+        <div class="footer-links">
+
+            <a href="#about">About</a>
+            <a href="#blood-groups">Blood Groups</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#register">Register</a>
+            <a href="#search">Find Donors</a>
+            <a href="#stock">Blood Bank</a>
+
+        </div>
+
+        <p class="copyright">
+            © 2026 Blood Donor | Blood Donation Awareness Project
+        </p>
+
+        <p class="disclaimer">
+            Educational project. Not an emergency service or a
+            substitute for professional medical advice.
+        </p>
+
+    </footer>
+
+
+    <!-- ===================================
+         JAVASCRIPT
+         BACKEND API INTEGRATION
+    =================================== -->
+
+    <script>
+
+        /*
+          The backend must be running at this address.
+          Update API_BASE if your server uses another address.
+        */
+
+        const API_BASE = "http://localhost:5000/api";
+
+        const $ = (id) => document.getElementById(id);
+
+
+        // Display messages safely.
+
+        function showMessage(element, message, isError = false) {
+
+            element.textContent = message;
+            element.hidden = false;
+
+            element.classList.toggle("error", isError);
+
+        }
+
+
+        // Send JSON requests to the backend.
+
+        async function apiRequest(endpoint, options = {}) {
+
+            const response = await fetch(API_BASE + endpoint, {
+                ...options,
+
+                headers: {
+                    "Content-Type": "application/json",
+                    ...options.headers
+                }
+            });
+
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.error ||
+                    result.message ||
+                    "The server could not complete your request."
+                );
+
+            }
+
+            return result;
+
+        }
+
+
+        // Request the visitor's location.
+
+        function getCurrentLocation() {
+
+            return new Promise((resolve, reject) => {
+
+                if (!navigator.geolocation) {
+
+                    reject(
+                        new Error(
+                            "Geolocation is not supported by this browser."
+                        )
+                    );
+
+                    return;
+
+                }
+
+                navigator.geolocation.getCurrentPosition(
+
+                    (position) => {
+
+                        resolve({
+
+                            latitude: position.coords.latitude,
+
+                            longitude: position.coords.longitude
+
+                        });
+
+                    },
+
+                    (error) => {
+
+                        let message = "Unable to access your location.";
+
+                        if (error.code === error.PERMISSION_DENIED) {
+
+                            message =
+                                "Location permission was denied. Please allow location access to continue.";
+
+                        } else if (error.code === error.POSITION_UNAVAILABLE) {
+
+                            message =
+                                "Your current location could not be determined.";
+
+                        } else if (error.code === error.TIMEOUT) {
+
+                            message =
+                                "Location request timed out. Please try again.";
+
+                        }
+
+                        reject(new Error(message));
+
+                    },
+
+                    {
+                        enableHighAccuracy: false,
+                        timeout: 15000,
+                        maximumAge: 60000
+                    }
+
+                );
+
+            });
+
+        }
+
+
+        // ===================================
+        // REGISTER DONOR
+        // ===================================
+
+        $("last_donation_date").max =
+            new Date().toISOString().split("T")[0];
+
+
+        $("donorForm").addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const message = $("regMessage");
+
+            if (!this.reportValidity()) {
+                return;
+            }
+
+            if (!$("donorConsent").checked) {
+
+                showMessage(
+                    message,
+                    "Please provide consent before submitting your details.",
+                    true
+                );
+
+                return;
+
+            }
+
+            const button = this.querySelector('button[type="submit"]');
+
+            button.disabled = true;
+            button.textContent = "Registering...";
+
+            try {
+
+                const location = await getCurrentLocation();
+
+                const donor = {
+
+                    name: $("name").value.trim(),
+
+                    blood_group: $("blood_group").value,
+
+                    last_donation_date:
+                        $("last_donation_date").value,
+
+                    phone: $("phone").value.trim(),
+
+                    latitude: location.latitude,
+
+                    longitude: location.longitude
+
+                };
+
+                if (
+                    donor.last_donation_date >
+                    new Date().toISOString().split("T")[0]
+                ) {
+
+                    throw new Error(
+                        "Last donation date cannot be in the future."
+                    );
+
+                }
+
+                const result = await apiRequest(
+                    "/register-donor",
+                    {
+                        method: "POST",
+                        body: JSON.stringify(donor)
+                    }
+                );
+
+                showMessage(
+                    message,
+                    result.message || "Registration submitted successfully."
+                );
+
+                this.reset();
+
+            } catch (error) {
+
+                showMessage(
+                    message,
+                    error.message ||
+                    "Unable to register. Please try again.",
+                    true
+                );
+
+            } finally {
+
+                button.disabled = false;
+                button.textContent = "Register with My Location";
+
+            }
+
+        });
+
+
+        // ===================================
+        // SEARCH NEAREST DONORS
+        // ===================================
+
+        $("searchForm").addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            if (!this.reportValidity()) {
+                return;
+            }
+
+            const container = $("resultsContainer");
+
+            container.replaceChildren();
+
+            const loading = document.createElement("p");
+
+            loading.className = "result-message";
+            loading.textContent = "Searching for potential donors...";
+
+            container.appendChild(loading);
+
+            const button = this.querySelector('button[type="submit"]');
+
+            button.disabled = true;
+
+            try {
+
+                const location = await getCurrentLocation();
+
+                const result = await apiRequest(
+                    "/request-blood",
+                    {
+                        method: "POST",
+
+                        body: JSON.stringify({
+
+                            blood_group_needed:
+                                $("search_blood_group").value,
+
+                            latitude: location.latitude,
+
+                            longitude: location.longitude
+
+                        })
+                    }
+                );
+
+                container.replaceChildren();
+
+                const heading = document.createElement("h3");
+
+                heading.textContent = "Potential Donor Matches";
+
+                container.appendChild(heading);
+
+                if (
+                    Array.isArray(result.nearestDonors) &&
+                    result.nearestDonors.length > 0
+                ) {
+
+                    result.nearestDonors.forEach((donor) => {
+
+                        const card = document.createElement("div");
+
+                        card.className = "donor-card";
+
+                        const name = document.createElement("p");
+
+                        const nameLabel = document.createElement("strong");
+
+                        nameLabel.textContent = "Name: ";
+
+                        name.appendChild(nameLabel);
+
+                        name.appendChild(
+                            document.createTextNode(
+                                donor.name || "Donor"
+                            )
+                        );
+
+                        card.appendChild(name);
+
+
+                        const group = document.createElement("p");
+
+                        const groupLabel = document.createElement("strong");
+
+                        groupLabel.textContent = "Blood Group: ";
+
+                        group.appendChild(groupLabel);
+
+                        group.appendChild(
+                            document.createTextNode(
+                                donor.blood_group || "Not available"
+                            )
+                        );
+
+                        card.appendChild(group);
+
+
+                        const distance = Number(donor.distance);
+
+                        if (
+                            Number.isFinite(distance) &&
+                            distance >= 0
+                        ) {
+
+                            const distanceRow =
+                                document.createElement("p");
+
+                            const distanceLabel =
+                                document.createElement("strong");
+
+                            distanceLabel.textContent = "Distance: ";
+
+                            distanceRow.appendChild(distanceLabel);
+
+                            distanceRow.appendChild(
+                                document.createTextNode(
+                                    distance.toFixed(2) + " km"
+                                )
+                            );
+
+                            card.appendChild(distanceRow);
+
+                        }
+
+
+                        /*
+                          Never display a donor's phone number
+                          publicly. Contact should be coordinated
+                          through a secure, authorised process.
+                        */
+
+                        const privacy = document.createElement("p");
+
+                        privacy.textContent =
+                            "Contact details are protected. " +
+                            "Please use the authorised coordination process.";
+
+                        card.appendChild(privacy);
+
+                        container.appendChild(card);
+
+                    });
+
+                } else {
+
+                    const empty = document.createElement("p");
+
+                    empty.className = "result-message";
+
+                    empty.textContent =
+                        "No potential donor matches were returned. " +
+                        "Contact an authorised blood bank for urgent assistance.";
+
+                    container.appendChild(empty);
+
+                }
+
+            } catch (error) {
+
+                container.replaceChildren();
+
+                const errorMessage = document.createElement("p");
+
+                errorMessage.className = "result-message error";
+
+                errorMessage.textContent =
+                    error.message ||
+                    "Unable to search. Check your backend connection.";
+
+                container.appendChild(errorMessage);
+
+            } finally {
+
+                button.disabled = false;
+
+            }
+
+        });
+
+
+        // ===================================
+        // UPDATE BLOOD BANK STOCK
+        // ===================================
+
+        $("stockForm").addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            if (!this.reportValidity()) {
+                return;
+            }
+
+            const message = $("stockMessage");
+
+            const button = this.querySelector('button[type="submit"]');
+
+            button.disabled = true;
+            button.textContent = "Updating...";
+
+            try {
+
+                const stock = {
+
+                    bank_name: $("bank_name").value.trim(),
+
+                    blood_group: $("stock_blood_group").value,
+
+                    units_available:
+                        Number($("units_available").value),
+
+                    location_address:
+                        $("location_address").value.trim()
+
+                };
+
+                if (
+                    !Number.isInteger(stock.units_available) ||
+                    stock.units_available < 0
+                ) {
+
+                    throw new Error(
+                        "Units available must be a non-negative whole number."
+                    );
+
+                }
+
+                const result = await apiRequest(
+                    "/update-stock",
+                    {
+                        method: "POST",
+                        body: JSON.stringify(stock)
+                    }
+                );
+
+                showMessage(
+                    message,
+                    result.message || "Stock update submitted."
+                );
+
+                await loadBloodStock();
+
+            } catch (error) {
+
+                showMessage(
+                    message,
+                    error.message ||
+                    "Unable to update stock.",
+                    true
+                );
+
+            } finally {
+
+                button.disabled = false;
+                button.textContent = "Update Blood Stock";
+
+            }
+
+        });
+
+
+        // ===================================
+        // LOAD BLOOD BANK STOCK
+        // ===================================
+
+        async function loadBloodStock() {
+
+            const container = $("stockListContainer");
+
+            container.replaceChildren();
+
+            const loading = document.createElement("p");
+
+            loading.className = "result-message";
+            loading.textContent = "Loading blood bank stock...";
+
+            container.appendChild(loading);
+
+            try {
+
+                const result = await apiRequest("/blood-banks", {
+                    method: "GET",
+                    headers: {}
+                });
+
+                container.replaceChildren();
+
+                if (
+                    Array.isArray(result.bloodBanks) &&
+                    result.bloodBanks.length > 0
+                ) {
+
+                    result.bloodBanks.forEach((bank) => {
+
+                        const card = document.createElement("div");
+
+                        card.className = "donor-card";
+
+                        function addRow(label, value) {
+
+                            const row = document.createElement("p");
+
+                            const strong = document.createElement("strong");
+
+                            strong.textContent = label + ": ";
+
+                            row.appendChild(strong);
+
+                            row.appendChild(
+                                document.createTextNode(
+                                    String(value ?? "Not available")
+                                )
+                            );
+
+                            card.appendChild(row);
+
+                        }
+
+                        addRow("Blood Bank", bank.bank_name);
+
+                        addRow("Blood Group", bank.blood_group);
+
+                        addRow("Units Available", bank.units_available);
+
+                        addRow("Address", bank.location_address);
+
+                        container.appendChild(card);
+
+                    });
+
+                } else {
+
+                    const empty = document.createElement("p");
+
+                    empty.className = "result-message";
+
+                    empty.textContent =
+                        "No blood stock records are currently available.";
+
+                    container.appendChild(empty);
+
+                }
+
+            } catch (error) {
+
+                container.replaceChildren();
+
+                const errorMessage = document.createElement("p");
+
+                errorMessage.className = "result-message error";
+
+                errorMessage.textContent =
+                    "Unable to load blood stock. " +
+                    "Make sure the backend is running and the API is available.";
+
+                container.appendChild(errorMessage);
+
+            }
+
+        }
+
+
+        // Refresh stock when the button is clicked.
+
+        $("refreshStock").addEventListener("click", loadBloodStock);
+
+
+        // Load stock when the page opens.
+
+        document.addEventListener("DOMContentLoaded", loadBloodStock);
+
+    </script>
+
+</body>
+
+</html>
+```
